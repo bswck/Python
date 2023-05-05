@@ -111,6 +111,19 @@ class PythonHandler(BaseHandler):
         "load_external_modules": False,
     }
     """
+    Attributes: General options:
+        show_bases (bool): Show the base classes of a class. Default: `True`.
+        show_source (bool): Show the source code of this object. Default: `True`.
+        preload_modules (list[str] | None): Pre-load modules that are
+            not specified directly in autodoc instructions (`::: identifier`).
+            It is useful when you want to render documentation for a particular member of an object,
+            and this member is imported from another package than its parent.
+
+            For an imported member to be rendered, you need to add it to the `__all__` attribute
+            of the importing module.
+
+            The modules must be listed as an array of strings. Default: `None`.
+
     Attributes: Headings options:
         heading_level (int): The initial heading level to use. Default: `2`.
         show_root_heading (bool): Show the heading of the object at the root of the documentation tree
@@ -156,20 +169,6 @@ class PythonHandler(BaseHandler):
         show_signature_annotations (bool): Show the type annotations in methods and functions signatures. Default: `False`.
         separate_signature (bool): Whether to put the whole signature in a code block below the heading.
             If Black is installed, the signature is also formatted using it. Default: `False`.
-
-    Attributes: Additional options:
-        show_bases (bool): Show the base classes of a class. Default: `True`.
-        show_source (bool): Show the source code of this object. Default: `True`.
-        preload_modules (list[str] | None): Pre-load modules that are
-            not specified directly in autodoc instructions (`::: identifier`).
-            It is useful when you want to render documentation for a particular member of an object,
-            and this member is imported from another package than its parent.
-
-            For an imported member to be rendered, you need to add it to the `__all__` attribute
-            of the importing module.
-
-            The modules must be listed as an array of strings. Default: `None`.
-
     """
 
     def __init__(
