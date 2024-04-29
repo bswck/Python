@@ -267,17 +267,19 @@ def cov(ctx: Context) -> None:
 
 
 @duty
-def test(ctx: Context, match: str = "") -> None:
+def test(ctx: Context, match: str = "", snapshot: str = "") -> None:
     """Run the test suite.
 
     Parameters:
         ctx: The context instance (passed automatically).
         match: A pytest expression to filter selected tests.
+        snapshot: Whether to "create", "fix", "trim", or "update" snapshots.
     """
     py_version = f"{sys.version_info.major}{sys.version_info.minor}"
     os.environ["COVERAGE_FILE"] = f".coverage.{py_version}"
+    args = [f"--inline-snapshot={snapshot}"] if snapshot else []
     ctx.run(
-        pytest.run("-n", "auto", "tests", config_file="config/pytest.ini", select=match, color="yes"),
+        pytest.run(*args, "-n", "auto", "tests", config_file="config/pytest.ini", select=match, color="yes"),
         title=pyprefix("Running tests"),
         command=f"pytest -c config/pytest.ini -n auto -k{match!r} --color=yes tests",
     )
