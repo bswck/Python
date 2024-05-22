@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import re
+import sys
+from datetime import datetime
 from typing import TYPE_CHECKING, Any
 
 import bs4
@@ -12,6 +14,13 @@ from inline_snapshot import external, outsource, snapshot
 
 if TYPE_CHECKING:
     from mkdocstrings.handlers.python import PythonHandler
+
+
+def log(msg: str, file: str) -> None:
+    py = "python" + ".".join(str(v) for v in sys.version_info[:2])
+    with open(file, "a") as f:
+        f.write(f"{py}: {datetime.now()}: {msg}\n")
+
 
 options = {
     # General options.
@@ -111,7 +120,7 @@ def _render(handler: PythonHandler, final_options: dict[str, Any]) -> str:
         html = handler.render(data, handler_options)
         return _normalize_html(html)
 
-
+log("Loading snapshots", "time.txt")
 snapshots_signatures = snapshot(
     {
         (
@@ -3439,6 +3448,7 @@ snapshots_members = snapshot(
     },
 )
 
+log("Parametrizing tests", "time.txt")
 
 # Signature options
 @pytest.mark.parametrize("annotations_path", options["annotations_path"])
@@ -3494,3 +3504,5 @@ def test_end_to_end_for_members(
     html = _render(session_handler, final_options)
     snapshot_key = tuple(sorted(final_options.items()))
     assert outsource(html, suffix=".html") == snapshots_members[snapshot_key]
+
+log("Finished", "time.txt")

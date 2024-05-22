@@ -277,7 +277,7 @@ def test(ctx: Context, match: str = "", snapshot: str = "") -> None:
     """
     py_version = f"{sys.version_info.major}{sys.version_info.minor}"
     os.environ["COVERAGE_FILE"] = f".coverage.{py_version}"
-    args = [f"--inline-snapshot={snapshot}"] if snapshot else ["-n", "auto"]
+    args = [f"--inline-snapshot={snapshot}"] if snapshot else []
     ctx.run(
         pytest.run(*args, "tests", config_file="config/pytest.ini", select=match, color="yes"),
         title=pyprefix("Running tests"),
