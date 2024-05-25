@@ -3506,3 +3506,7 @@ def test_end_to_end_for_members(
     assert outsource(html, suffix=".html") == snapshots_members[snapshot_key]
 
 log("Finished", "time.txt")
+
+
+def test_false():
+    assert False

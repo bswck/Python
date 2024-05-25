@@ -214,13 +214,21 @@ def test(ctx: Context, *cli_args: str, match: str = "") -> None:
     """
     py_version = f"{sys.version_info.major}{sys.version_info.minor}"
     os.environ["COVERAGE_FILE"] = f".coverage.{py_version}"
-    args = [f"--inline-snapshot={snapshot}"] if snapshot else []
+    if py_version in ("38", "39", "310"):
+        snapshot = "disable"
+    args = list(cli_args)
+    if snapshot == "disable":
+        args = ["-n", "auto", "--inline-snapshot=disable"]
+    elif snapshot:
+        args = [f"--inline-snapshot={snapshot}"]
+    else:
+        args = ["-n", "auto"]
     ctx.run(
         tools.pytest(
             "tests",
             config_file="config/pytest.ini",
             select=match,
             color="yes",
-        ).add_args(*cli_args),
+        ).add_args(*args),
         title=pyprefix("Running tests"),
     )
