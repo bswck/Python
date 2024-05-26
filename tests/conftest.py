@@ -80,7 +80,8 @@ def fixture_handler(plugin: MkdocstringsPlugin, ext_markdown: Markdown) -> Pytho
 # --------------------------------------------
 @pytest.fixture(name="session_mkdocs_conf", scope="session")
 def fixture_session_mkdocs_conf(
-    request: pytest.FixtureRequest, tmp_path_factory: pytest.TempPathFactory
+    request: pytest.FixtureRequest,
+    tmp_path_factory: pytest.TempPathFactory,
 ) -> Iterator[MkDocsConfig]:
     """Yield a MkDocs configuration object.
 
