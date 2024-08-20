@@ -12,12 +12,15 @@ from contextlib import suppress
 from pathlib import Path
 from typing import TYPE_CHECKING, Any, BinaryIO, ClassVar, Iterator, Mapping, Sequence
 
-from griffe.collections import LinesCollection, ModulesCollection
-from griffe.docstrings.parsers import Parser
-from griffe.exceptions import AliasResolutionError
-from griffe.extensions import load_extensions
-from griffe.loader import GriffeLoader
-from griffe.logger import patch_loggers
+from griffe import (
+    AliasResolutionError,
+    GriffeLoader,
+    LinesCollection,
+    ModulesCollection,
+    Parser,
+    load_extensions,
+    patch_loggers,
+)
 from mkdocstrings.extension import PluginError
 from mkdocstrings.handlers.base import BaseHandler, CollectionError, CollectorItem
 from mkdocstrings.inventory import Inventory
@@ -162,7 +165,7 @@ class PythonHandler(BaseHandler):
 
     Attributes: Docstrings options:
         docstring_style (str): The docstring style to use: `google`, `numpy`, `sphinx`, or `None`. Default: `"google"`.
-        docstring_options (dict): The options for the docstring parser. See parsers under [`griffe.docstrings`][].
+        docstring_options (dict): The options for the docstring parser. See [docstring parsers](https://mkdocstrings.github.io/griffe/reference/docstrings/) and their options in Griffe docs.
         docstring_section_style (str): The style used to render docstring sections. Options: `table`, `list`, `spacy`. Default: `"table"`.
         merge_init_into_class (bool): Whether to merge the `__init__` method into the class' signature and docstring. Default: `False`.
         show_if_no_docstring (bool): Show the object heading even if it has no docstring or children with docstrings. Default: `False`.
@@ -197,7 +200,7 @@ class PythonHandler(BaseHandler):
         config_file_path: str | None = None,
         paths: list[str] | None = None,
         locale: str = "en",
-        load_external_modules: bool = False,
+        load_external_modules: bool | None = None,
         **kwargs: Any,
     ) -> None:
         """Initialize the handler.
@@ -296,7 +299,7 @@ class PythonHandler(BaseHandler):
         if unknown_module:
             extensions = self.normalize_extension_paths(final_config.get("extensions", []))
             loader = GriffeLoader(
-                extensions=load_extensions(extensions),
+                extensions=load_extensions(*extensions),
                 search_paths=self._paths,
                 docstring_parser=parser,
                 docstring_options=parser_options,
@@ -474,7 +477,7 @@ def get_handler(
     config_file_path: str | None = None,
     paths: list[str] | None = None,
     locale: str = "en",
-    load_external_modules: bool = False,
+    load_external_modules: bool | None = None,
     **config: Any,  # noqa: ARG001
 ) -> PythonHandler:
     """Simply return an instance of `PythonHandler`.

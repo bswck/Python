@@ -5,6 +5,52 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.10.8](https://github.com/mkdocstrings/python/releases/tag/1.10.8) - 2024-08-14
+
+<small>[Compare with 1.10.7](https://github.com/mkdocstrings/python/compare/1.10.7...1.10.8)</small>
+
+### Build
+
+- Depend on Griffe 0.49 ([a87dcad](https://github.com/mkdocstrings/python/commit/a87dcad36065dc3171512e166ec632ee3e5b0a64) by Timothée Mazzucotelli).
+
+## [1.10.7](https://github.com/mkdocstrings/python/releases/tag/1.10.7) - 2024-07-25
+
+<small>[Compare with 1.10.6](https://github.com/mkdocstrings/python/compare/1.10.6...1.10.7)</small>
+
+### Packaging
+
+- Include tests and all relevant files for downstream packaging in source distribution
+
+## [1.10.6](https://github.com/mkdocstrings/python/releases/tag/1.10.6) - 2024-07-25
+
+<small>[Compare with 1.10.5](https://github.com/mkdocstrings/python/compare/1.10.5...1.10.6)</small>
+
+### Bug Fixes
+
+- Fix condition to display members (check all members, not just non-inherited ones) ([3d838a9](https://github.com/mkdocstrings/python/commit/3d838a96f77fa128cd6f2afa5ed0cb151ab225fd) by Timothée Mazzucotelli).
+
+### Code Refactoring
+
+- Update code for Griffe 0.48 (removing deprecation warnings) ([eff10cc](https://github.com/mkdocstrings/python/commit/eff10ccf0fa1b2e73df912048a15c2d6406a2c8b) by Timothée Mazzucotelli). [Issue-173](https://github.com/mkdocstrings/python/issues/173)
+
+## [1.10.5](https://github.com/mkdocstrings/python/releases/tag/1.10.5) - 2024-06-19
+
+<small>[Compare with 1.10.4](https://github.com/mkdocstrings/python/compare/1.10.4...1.10.5)</small>
+
+### Bug Fixes
+
+- Mix both previous checks for displaying objects: not imported or public ([587963b](https://github.com/mkdocstrings/python/commit/587963ba53f765c9d7eefbc2fb80bdbb11164850) by Timothée Mazzucotelli). [Issue-294](https://github.com/mkdocstrings/griffe/issues/294)
+
+## [1.10.4](https://github.com/mkdocstrings/python/releases/tag/1.10.4) - 2024-06-18
+
+<small>[Compare with 1.10.3](https://github.com/mkdocstrings/python/compare/1.10.3...1.10.4)</small>
+
+### Code Refactoring
+
+- Only filter out imported objects instead of non-public ones after applying filters ([e2f4b35](https://github.com/mkdocstrings/python/commit/e2f4b35d29eca6f68afbd2e728ef7542a2abc992) by Timothée Mazzucotelli). [Issue-mkdocstrings/griffe-294](https://github.com/mkdocstrings/griffe/issues/294)
+- Update code for Griffe 0.46 to avoid deprecation warnings ([321b407](https://github.com/mkdocstrings/python/commit/321b407eb95195c44f3cf34d780784e0d6751998) by Timothée Mazzucotelli).
+- Change `load_external_modules` default value to `None` to support new default mode in Griffe ([ae5896c](https://github.com/mkdocstrings/python/commit/ae5896c1604e9089162d0d63ec97a510a6bcef89) by Timothée Mazzucotelli).
+
 ## [1.10.3](https://github.com/mkdocstrings/python/releases/tag/1.10.3) - 2024-05-22
 
 <small>[Compare with 1.10.2](https://github.com/mkdocstrings/python/compare/1.10.2...1.10.3)</small>
