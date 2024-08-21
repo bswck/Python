@@ -406,7 +406,7 @@ def do_filter_objects(
         # Include specific inherited members.
         inherited_members_specified = True
         objects = [
-            obj for obj in objects_dictionary.values() if not obj.inherited or obj.name in set(inherited_members)
+             obj for obj in objects_dictionary.values() if not obj.inherited or obj.name in set(inherited_members)
         ]
 
     if members_list is True:
