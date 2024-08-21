@@ -17,7 +17,7 @@ if TYPE_CHECKING:
     from mkdocstrings.handlers.python import PythonHandler
 
 
-options = {
+options: dict[str, Any] = {
     # General options.
     "find_stubs_package": (True, False),
     "allow_inspection": (True, False),

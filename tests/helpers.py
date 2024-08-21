@@ -6,13 +6,13 @@ from collections import ChainMap
 from contextlib import contextmanager
 from typing import TYPE_CHECKING, Any, Iterator
 
-import pytest
 from markdown.core import Markdown
 from mkdocs.config.defaults import MkDocsConfig
 
 if TYPE_CHECKING:
     from pathlib import Path
 
+    import pytest
     from mkdocstrings.plugin import MkdocstringsPlugin
 
     from mkdocstrings_handlers.python.handler import PythonHandler
