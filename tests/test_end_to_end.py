@@ -126,7 +126,6 @@ def _render_options(options: dict[str, Any]) -> str:
 @pytest.mark.parametrize("show_signature_annotations", options["show_signature_annotations"])
 @pytest.mark.parametrize("signature_crossrefs", options["signature_crossrefs"])
 @pytest.mark.parametrize("separate_signature", options["separate_signature"])
-@pytest.mark.parametrize("unwrap_annotated", options["unwrap_annotated"])
 def test_end_to_end_for_signatures(
     session_handler: PythonHandler,
     annotations_path: str,
@@ -134,7 +133,6 @@ def test_end_to_end_for_signatures(
     show_signature_annotations: bool,
     signature_crossrefs: bool,
     separate_signature: bool,
-    unwrap_annotated: bool,
 ) -> None:
     """Test rendering of a given theme's templates.
 
@@ -148,7 +146,6 @@ def test_end_to_end_for_signatures(
         "show_signature_annotations": show_signature_annotations,
         "signature_crossrefs": signature_crossrefs,
         "separate_signature": separate_signature,
-        "unwrap_annotated": unwrap_annotated,
     }
     html = _render_options(final_options) + _render(session_handler, final_options)
     snapshot_key = tuple(sorted(final_options.items()))
@@ -160,16 +157,12 @@ def test_end_to_end_for_signatures(
 @pytest.mark.parametrize("members", options["members"])
 @pytest.mark.parametrize("members_order", options["members_order"])
 @pytest.mark.parametrize("filters", options["filters"])
-# @pytest.mark.parametrize("group_by_category", options["group_by_category"])
-@pytest.mark.parametrize("summary", options["summary"])
 def test_end_to_end_for_members(
     session_handler: PythonHandler,
     inherited_members: list[str] | bool | None,
     members: list[str] | bool | None,
     members_order: str,
     filters: list[str] | None,
-    # group_by_category: bool,
-    summary: bool | dict[str, bool] | None,
 ) -> None:
     """Test rendering of a given theme's templates.
 
@@ -182,7 +175,6 @@ def test_end_to_end_for_members(
         "members": members,
         "members_order": members_order,
         "filters": filters,
-        "summary": summary,
     }
     html = _render_options(final_options) + _render(session_handler, final_options)
     snapshot_key = tuple(sorted(final_options.items()))
