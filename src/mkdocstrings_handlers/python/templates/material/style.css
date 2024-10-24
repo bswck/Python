@@ -140,3 +140,48 @@ code.doc-symbol-module::after {
   color: inherit;
   border-bottom: 1px dotted currentcolor;
 }
+
+:root {
+  --md-admonition-icon--source: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.6 16.6 4.6-4.6-4.6-4.6L16 6l6 6-6 6zm-5.2 0L4.8 12l4.6-4.6L8 6l-6 6 6 6z"/></svg>')
+  /* --md-admonition-icon--source: "" */
+}
+.md-typeset .admonition.source,
+.md-typeset details.source {
+  border-color: var(--md-code-bg-color);
+}
+.md-typeset .source > .admonition-title,
+.md-typeset .source > summary {
+  background-color: var(--md-code-bg-color);
+}
+.md-typeset .source > .admonition-title::before,
+.md-typeset .source > summary::before {
+  /* background-color: rgb(128, 128, 128); */
+  background-color: var(--md-code-bg-color);
+  /* -webkit-mask-image: var(--md-admonition-icon--source);
+          mask-image: var(--md-admonition-icon--source); */
+  -webkit-mask-image: unset;
+          mask-image: unset;
+}
+
+.doc details.source {
+  background-color: var(--md-code-bg-color);
+  border: 0;
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
+  transition: none;
+}
+
+.doc details.source summary {
+  background-color: inherit;
+  border: 0;
+  border-radius: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+
+.doc details.source summary code {
+  box-shadow: none;
+  padding: 0;
+}
